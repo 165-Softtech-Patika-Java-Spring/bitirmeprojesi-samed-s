@@ -1,10 +1,12 @@
 package com.softtech.graduationproject.usr.service;
 
+import com.softtech.graduationproject.gen.exceptions.GenBusinessException;
 import com.softtech.graduationproject.usr.converter.UsrUserMapper;
 import com.softtech.graduationproject.usr.dto.UsrUserDto;
 import com.softtech.graduationproject.usr.dto.UsrUserSaveRequestDto;
 import com.softtech.graduationproject.usr.dto.UsrUserUpdateRequestDto;
 import com.softtech.graduationproject.usr.entity.UsrUser;
+import com.softtech.graduationproject.usr.enums.UsrErrorMessage;
 import com.softtech.graduationproject.usr.service.entityservice.UsrUserEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +30,12 @@ public class UsrUserService {
     }
 
     public UsrUserDto save(UsrUserSaveRequestDto usrUserSaveRequestDto) {
+        String username = usrUserSaveRequestDto.getUsername();
+        UsrUser existsUser = usrUserEntityService.findByUsername(username);
+        if(existsUser != null) {
+            throw new GenBusinessException(UsrErrorMessage.USERNAME_CANNOT_BE_USED);
+        }
+
         UsrUser usrUser = UsrUserMapper.INSTANCE.convertToUsrUser(usrUserSaveRequestDto);
 
         String password = passwordEncoder.encode(usrUser.getPassword());

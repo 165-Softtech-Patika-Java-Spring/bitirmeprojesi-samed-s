@@ -4,7 +4,8 @@ import com.softtech.graduationproject.gen.enums.BaseErrorMessage;
 
 public enum UsrErrorMessage implements BaseErrorMessage {
 
-    USER_NOT_FOUND("User not found!")
+    USER_NOT_FOUND("User not found!"),
+    USERNAME_CANNOT_BE_USED("Username cannot be used!")
     ;
 
     private String message;

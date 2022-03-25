@@ -53,6 +53,11 @@ public class PrdProductService {
         BigDecimal priceWithVat = getPriceWithVatUsingPrdProductType(prdProductTypeId, price);
 
         PrdProduct prdProduct = PrdProductMapper.INSTANCE.convertToPrdProduct(prdProductSaveRequestDto);
+        PrdProduct existsProduct = prdProductEntityService.findByName(name);
+        if(existsProduct != null){
+            throw new GenBusinessException(PrdErrorMessage.PRODUCT_NAME_CANNOT_BE_USED);
+        }
+
         PrdProductDto prdProductDto = setPriceWithVatAndSavePrdProduct(prdProduct, priceWithVat);
 
         return prdProductDto;

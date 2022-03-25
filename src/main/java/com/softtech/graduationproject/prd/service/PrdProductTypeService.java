@@ -95,6 +95,12 @@ public class PrdProductTypeService {
         Long vatRate = prdProductType.getVatRate();
         controlIsVatRateNegative(vatRate);
 
+        String type = prdProductType.getType();
+        PrdProductType existsProductType = prdProductTypeEntityService.findByType(type);
+        if(existsProductType != null){
+            throw new GenBusinessException(PrdErrorMessage.TYPE_NAME_CANNOT_BE_USED);
+        }
+
         prdProductType = prdProductTypeEntityService.save(prdProductType);
         PrdProductTypeDto prdProductTypeDto = PrdProductTypeMapper.INSTANCE.convertToPrdProductTypeDto(prdProductType);
 

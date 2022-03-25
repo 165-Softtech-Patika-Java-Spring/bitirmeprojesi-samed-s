@@ -8,7 +8,9 @@ public enum PrdErrorMessage implements BaseErrorMessage {
     PRICE_CANNOT_BE_NEGATIVE("Product price cannot be negative or zero!"),
     NAME_CANNOT_BE_NULL("Name cannot be null!"),
     PRICE_CANNOT_BE_NULL("Price cannot be null!"),
-    PRODUCT_TYPE_ID_CANNOT_BE_NULL("Product type id cannot be null!")
+    PRODUCT_TYPE_ID_CANNOT_BE_NULL("Product type id cannot be null!"),
+    TYPE_NAME_CANNOT_BE_USED("Product type name cannot be used!"),
+    PRODUCT_NAME_CANNOT_BE_USED("Product name cannot be used!")
     ;
 
     private String message;

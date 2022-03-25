@@ -28,4 +28,8 @@ public class PrdProductEntityService extends BaseEntityService<PrdProduct, PrdPr
         BigDecimal priceWithVat =  price.add(vatValue);
         return priceWithVat;
     }
+
+    public PrdProduct findByName(String name) {
+        return getDao().findByName(name);
+    }
 }

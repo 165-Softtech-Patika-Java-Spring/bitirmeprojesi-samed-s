@@ -12,4 +12,5 @@ public interface PrdProductDao extends JpaRepository<PrdProduct, Long> {
 
     List<PrdProduct> findAllByPrdProductTypeId(Long prdProductTypeId);
     List<PrdProduct> findAllByPriceWithVatBetween(BigDecimal minPriceWithVat, BigDecimal maxPriceWithVat);
+    PrdProduct findByName(String name);
 }
